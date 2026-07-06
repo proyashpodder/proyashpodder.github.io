@@ -31,7 +31,7 @@
         top: 0;
         left: 0;
         overflow: auto;
-        background: #0b4c75;
+        background: #7f9a84;
         width:250px;
         height: 100%;
     }
@@ -80,10 +80,10 @@
     color: white;
     cursor: pointer;
     padding: 10px 30px;
-    background: #0765A0;
+    background: #6f8d77;
   }
   #navigation > a.nav_item:hover{
-    background: #3D7EB0;
+    background: #5f7a68;
   }
 
 
@@ -100,30 +100,50 @@
   }
 
 
-  #main > div.content{
-    padding: 10px 50px;
-    line-height: 25px;
+  #main .section-group > .content{
+    padding: 12px 70px 24px 90px;
+    line-height: 1.7;
     font-family: 'Lato', sans-serif;
     font-weight: 450;
     font-size: 16px;
   }
 
-  #main > div.title{
-    padding:20px 0;
-    margin: 0 50px;
-    border-bottom:1px silver solid;
-    margin-bottom:10px;
-    font-size:2em;
-    font-weight:bold;
+  #main .section-group > .content p{
+    margin-bottom: 12px;
+  }
+
+  #main .section-group {
+    display: none;
+  }
+
+  #main .section-group.active {
+    display: block;
+  }
+
+  #main .section-group > .title{
+    padding: 28px 0 12px 0;
+    margin: 10px 70px 14px 70px;
+    border-bottom: 2px solid #c7d4c3;
+    font-size: 2.6em;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #0f2f5a;
+    font-family: 'Lato', sans-serif;
+  }
+
+  #main .section-group > .title > .title_link{
+    color: #0f2f5a;
+    font-size: inherit;
   }
 
   #main > div.subtitle
   {
-    padding: 10px 0;
-    margin: 0 50px;
-    margin-bottom: 5px;
-    font-size: 1.2em;
-    font-weight: 600;
+    padding: 10px 0 6px 0;
+    margin: 18px 70px 6px 70px;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #4d5f4d;
+    font-family: 'Lato', sans-serif;
   }
   #main div.linebreak{
     padding: 5px;
