@@ -5,6 +5,7 @@
 :root {
   --bg: #ffffff;
   --bg-alt: #f7f6f3;
+  --tint: #f7f2ec;             /* warm cream: header band, highlight panel */
   --ink: #1c1c1c;
   --ink-2: #454545;
   --ink-3: #6e6e6e;
@@ -22,6 +23,7 @@
   :root {
     --bg: #141414;
     --bg-alt: #1b1b1b;
+    --tint: #1e1b19;
     --ink: #e9e7e3;
     --ink-2: #c3c0ba;
     --ink-3: #96938d;
@@ -93,7 +95,10 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 }
 
 /* --------------------------------------------------------- page headings */
-.page-head { padding: 52px 0 28px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+/* Full-width cream band without horizontal overflow: the box-shadow paints the
+   band edge to edge and clip-path keeps it from spilling vertically. */
+.page-head, .profile { background: var(--tint); box-shadow: 0 0 0 100vmax var(--tint); clip-path: inset(0 -100vmax); }
+.page-head { padding: 48px 0 40px; margin-bottom: 8px; }
 .page-head h1 { font-family: var(--font-serif); font-size: 40px; font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
 .page-head p { color: var(--ink-2); margin: 14px 0 0; max-width: 44em; }
 
@@ -103,14 +108,18 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
   padding-bottom: 10px; margin-bottom: 22px; border-bottom: 1px solid var(--rule);
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap;
 }
+.section-title, .area-block > h2 { position: relative; }
+.section-title::after, .area-block > h2::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; width: 56px; height: 2px; background: var(--accent);
+}
 .section-title .more { font-family: var(--font-sans); font-size: 15px; font-weight: 400; }
 .prose { color: var(--ink-2); }
 .prose strong, .prose b { color: var(--ink); font-weight: 600; }
 .muted { color: var(--ink-3); }
 
 /* --------------------------------------------------------------- profile */
-.profile { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 44px; padding: 52px 0 28px; align-items: start; }
-.profile img { width: 230px; height: 230px; object-fit: cover; object-position: 50% 30%; border-radius: 4px; background: var(--bg-alt); }
+.profile { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 44px; padding: 48px 0 44px; margin-bottom: 8px; align-items: start; }
+.profile img { width: 230px; height: 230px; object-fit: cover; object-position: 50% 30%; border-radius: 4px; background: var(--bg-alt); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
 .profile h1 { font-family: var(--font-serif); font-size: 42px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em; }
 .profile .position { font-size: 19px; color: var(--ink); margin: 10px 0 0; line-height: 1.45; }
 .profile .position span { color: var(--ink-2); }
@@ -121,7 +130,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 .profile-links a {
   display: inline-flex; align-items: center; gap: 7px;
   font-size: 15px; color: var(--ink); padding: 6px 12px;
-  border: 1px solid var(--rule); border-radius: 4px;
+  border: 1px solid var(--rule); border-radius: 4px; background: var(--bg);
 }
 .profile-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 @media (max-width: 680px) {
@@ -133,7 +142,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 /* -------------------------------------------------------- research areas */
 .areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
 .area { padding: 16px 0; border-top: 1px solid var(--rule); }
-.area:first-child { grid-column: 1 / -1; border-top: 0; padding-top: 0; }
+.area:first-child { grid-column: 1 / -1; border-top: 0; background: var(--tint); border-left: 3px solid var(--accent); padding: 18px 22px; margin-bottom: 8px; }
 .area h3 { font-size: 18px; font-weight: 600; line-height: 1.35; margin-bottom: 4px; }
 .area h3 a { color: var(--ink); }
 .area p { color: var(--ink-2); margin: 0; font-size: 16.5px; }
@@ -141,7 +150,8 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
   display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 6px;
 }
-@media (max-width: 680px) { .areas { grid-template-columns: 1fr; } }
+.area:nth-child(2), .area:nth-child(3) { border-top: 0; padding-top: 10px; }
+@media (max-width: 680px) { .areas { grid-template-columns: 1fr; } .area:nth-child(3) { border-top: 1px solid var(--rule); padding-top: 16px; } }
 
 /* research page */
 .area-block { padding: 36px 0 8px; }
@@ -228,7 +238,7 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 .table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); color: var(--ink-2); vertical-align: top; }
 .table td:first-child { color: var(--ink); font-weight: 600; }
 
-.note { background: var(--bg-alt); border-left: 3px solid var(--accent); padding: 14px 18px; color: var(--ink-2); }
+.note { background: var(--tint); border-left: 3px solid var(--accent); padding: 14px 18px; color: var(--ink-2); }
 .note p:last-child { margin: 0; }
 
 /* ---------------------------------------------------------------- footer */
